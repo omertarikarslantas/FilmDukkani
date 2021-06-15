@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "Film Ekle";
+}
+@using FilmDukkaniProje.Models
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-heading">
+                <div class="main-text h2">
+                    Film Ekleme Sayfası
+                </div>
+                <div class="block-controls">
+                    <a href="/Film/Index"><span aria-hidden="true" class="icon icon-cross icon-size-medium block-control-remove"></span></a>           
+                    <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+                </div>
+            </div>
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <form action="/Film/FilmEkle" method="post" role="form">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Filmin Adı</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Film Adı Giriniz" name="FilmAdi">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Yönetmeni</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Yönetmeni Giriniz" name="Yonetmen">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Özet</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Özet Giriniz" name="Ozet">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Oyuncular</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder=" Oyuncuları Giriniz" name="Oyuncular">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Yapım Yılı</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Yapım Yılı Giriniz" name="YapimYili">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Aldığı Ödüller</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Aldığı Ödülleri Giriniz" name="AldigiOduller">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1"> Barkod No</label>
+                            <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Barkod No Giriniz" name="BarkodNo">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Stok Miktarı</label>
+                            <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Stok Miktarını Giriniz" name="Stok">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Kategori</label>
+                            <select name="KategoriID" class="form-control">
+                                @foreach (Kategori ktg in ViewBag.Kategoriler)
+                                {
+                                    <option value="@ktg.KategoriID">@ktg.KategoriAdi</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Tedarikçi</label>
+                            <select name="TedarikciID" class="form-control">
+                                @foreach (Tedarikci tdr in ViewBag.Tedarikciler)
+                                {
+                                    <option value="@tdr.TedarikciID">@tdr.TedarikciAdi</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Alt Yazı</label>
+                            <select name="AltYaziID" class="form-control">
+                                @foreach (AltYazi ay in ViewBag.AltYazilar)
+                                {
+                                    <option value="@ay.AltYaziID">@ay.AltYaziAdi</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Görsel</label>
+                            <input type="file" class="form-control" id="exampleInputPassword1" placeholder="Görsel Seçiniz" name="Gorsel">
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">Kaydet</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

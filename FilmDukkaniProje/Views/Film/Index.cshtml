@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "Filmler";
+}
+@using FilmDukkaniProje.Models
+@model List<Filmler>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-heading">
+                <div class="main-text h2">
+                    Filmler
+                </div>
+                <div class="block-controls">
+
+                    <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+                    <a href="/Film/FilmEkle" class="btn btn-success rounded">Yeni Film Ekle</a>
+                </div>
+            </div>
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Film Adı</th>
+                                <th>Yönetmen</th>
+                                <th>Özet</th>
+                                <th>Oyuncular</th>
+                                <th>Yapım Yılı</th>
+                                <th>Aldığı Ödüller</th>
+                                <th>Barkod No</th>
+                                <th>Stok Miktarı</th>
+                                <th>Tedarikçi</th>
+                                <th>Kategori</th>
+                                <th>Altyazı</th>
+                                <th>Görsel</th>
+                                <th>Stok Durumu</th>
+                                <th>Güncelle</th>
+                                <th>Sil</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Filmler u in Model)
+                            {
+                            <tr>
+                                <td>@u.FilmAdi</td>
+                                <td>@u.Yonetmen</td>
+                                <td>@u.Ozet</td>
+                                <td>@u.Oyuncular</td>
+                                <td>@u.YapimYili</td>
+                                <td>@u.AldigiOduller</td>
+                                <td>@u.BarkodNo</td>
+                                <td>@u.Stok</td>
+                                <td>@u.Tedarikci.TedarikciAdi</td>
+                                <td>@u.Kategori.KategoriAdi</td>
+                                <td>@u.AltYazi.AltYaziAdi</td>
+                                <td>@u.Gorsel</td>
+                                @if (u.Stok == 0)
+                                {
+                                    <td>
+                                        <span class="label label-danger">Stokta Yok</span>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <span class="label label-success">Stokta Var</span>
+                                    </td>
+                                }
+                                <td>
+                                    <a href="/Film/Guncelle/@u.FilmID" class="btn btn-primary success">Filmi Güncelle</a>
+                                </td>
+                                <td>
+                                    <a href="/Film/Sil/@u.FilmID" class="btn btn-danger rounded">Filmi Sil</a>
+                                </td>
+                            </tr>
+                            }
+                            
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

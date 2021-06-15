@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="11597fabdd7b47949ff96be861062071" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="FilmDukkaniModel.AltYazi" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmDukkaniModel.Film_Altyazi" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmDukkaniModel.FilmKategori" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmDukkaniModel.Filmler" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmDukkaniModel.FilmListe" Width="1.5" PointX="8.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmDukkaniModel.Kategori" Width="1.5" PointX="3.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmDukkaniModel.Liste" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmDukkaniModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmDukkaniModel.Tedarik_Film" Width="1.5" PointX="8.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmDukkaniModel.Tedarikci" Width="1.5" PointX="3.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmDukkaniModel.Paket" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <AssociationConnector Association="FilmDukkaniModel.FK_Film_Altyazi_AltYazi" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmDukkaniModel.FK_Filmler_AltYazi" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmDukkaniModel.FK_Film_Altyazi_Filmler" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmDukkaniModel.FK_FilmKategori_Filmler" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmDukkaniModel.FK_FilmKategori_Kategori" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmDukkaniModel.FK_Filmler_Kategori" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmDukkaniModel.FK_Filmler_Tedarikci" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmDukkaniModel.FK_FilmListe_Filmler" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmDukkaniModel.FK_Tedarik_Film_Filmler" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmDukkaniModel.FK_FilmListe_Liste" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmDukkaniModel.FK_Tedarik_Film_Tedarikci" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FilmDukkaniModel.aspnet_Applications" Width="1.5" PointX="10.375" PointY="7.875" />
+        <EntityTypeShape EntityType="FilmDukkaniModel.aspnet_Membership" Width="1.5" PointX="17.625" PointY="6.5" />
+        <EntityTypeShape EntityType="FilmDukkaniModel.aspnet_Paths" Width="1.5" PointX="12.625" PointY="6.375" />
+        <EntityTypeShape EntityType="FilmDukkaniModel.aspnet_PersonalizationAllUsers" Width="1.5" PointX="14.875" PointY="9.875" />
+        <EntityTypeShape EntityType="FilmDukkaniModel.aspnet_PersonalizationPerUser" Width="1.5" PointX="14.875" PointY="6.375" />
+        <EntityTypeShape EntityType="FilmDukkaniModel.aspnet_Profile" Width="1.5" PointX="17.125" PointY="13.875" />
+        <EntityTypeShape EntityType="FilmDukkaniModel.aspnet_Roles" Width="1.5" PointX="12.625" PointY="15.75" />
+        <EntityTypeShape EntityType="FilmDukkaniModel.aspnet_SchemaVersions" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="FilmDukkaniModel.aspnet_Users" Width="1.5" PointX="14.875" PointY="13.375" />
+        <EntityTypeShape EntityType="FilmDukkaniModel.aspnet_WebEvent_Events" Width="1.5" PointX="6.375" PointY="11.75" />
+        <AssociationConnector Association="FilmDukkaniModel.FK__aspnet_Me__Appli__09746778" />
+        <AssociationConnector Association="FilmDukkaniModel.FK__aspnet_Pa__Appli__3B0BC30C" />
+        <AssociationConnector Association="FilmDukkaniModel.FK__aspnet_Ro__Appli__27F8EE98" />
+        <AssociationConnector Association="FilmDukkaniModel.FK__aspnet_Us__Appli__793DFFAF" />
+        <AssociationConnector Association="FilmDukkaniModel.FK__aspnet_Me__UserI__0A688BB1" />
+        <AssociationConnector Association="FilmDukkaniModel.FK__aspnet_Pe__PathI__40C49C62" />
+        <AssociationConnector Association="FilmDukkaniModel.FK__aspnet_Pe__PathI__44952D46" />
+        <AssociationConnector Association="FilmDukkaniModel.FK__aspnet_Pe__UserI__4589517F" />
+        <AssociationConnector Association="FilmDukkaniModel.FK__aspnet_Pr__UserI__1E6F845E" />
+        <AssociationConnector Association="FilmDukkaniModel.aspnet_UsersInRoles" />
+        <EntityTypeShape EntityType="FilmDukkaniModel.SepetimdekiFilmler" Width="1.5" PointX="8.375" PointY="11.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

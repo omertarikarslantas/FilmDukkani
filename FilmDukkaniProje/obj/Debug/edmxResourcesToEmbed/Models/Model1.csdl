@@ -1,0 +1,684 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FilmDukkaniModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AltYazi">
+    <Key>
+      <PropertyRef Name="AltYaziID" />
+    </Key>
+    <Property Name="AltYaziID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AltYaziAdi" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Film_Altyazi" Relationship="Self.FK_Film_Altyazi_AltYazi" FromRole="AltYazi" ToRole="Film_Altyazi" />
+    <NavigationProperty Name="Filmler" Relationship="Self.FK_Filmler_AltYazi" FromRole="AltYazi" ToRole="Filmler" />
+  </EntityType>
+  <EntityType Name="Film_Altyazi">
+    <Key>
+      <PropertyRef Name="FilmAltID" />
+      <PropertyRef Name="AltyaziID" />
+      <PropertyRef Name="FilmID" />
+    </Key>
+    <Property Name="FilmAltID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AltyaziID" Type="Int32" Nullable="false" />
+    <Property Name="FilmID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AltYazi" Relationship="Self.FK_Film_Altyazi_AltYazi" FromRole="Film_Altyazi" ToRole="AltYazi" />
+    <NavigationProperty Name="Filmler" Relationship="Self.FK_Film_Altyazi_Filmler" FromRole="Film_Altyazi" ToRole="Filmler" />
+  </EntityType>
+  <EntityType Name="FilmKategori">
+    <Key>
+      <PropertyRef Name="FilmKategoriID" />
+      <PropertyRef Name="KategoriID" />
+      <PropertyRef Name="FilmID" />
+    </Key>
+    <Property Name="FilmKategoriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KategoriID" Type="Int32" Nullable="false" />
+    <Property Name="FilmID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Filmler" Relationship="Self.FK_FilmKategori_Filmler" FromRole="FilmKategori" ToRole="Filmler" />
+    <NavigationProperty Name="Kategori" Relationship="Self.FK_FilmKategori_Kategori" FromRole="FilmKategori" ToRole="Kategori" />
+  </EntityType>
+  <EntityType Name="Filmler">
+    <Key>
+      <PropertyRef Name="FilmID" />
+    </Key>
+    <Property Name="FilmID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FilmAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Yonetmen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Ozet" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Oyuncular" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="YapimYili" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="AldigiOduller" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BarkodNo" Type="Int32" Nullable="false" />
+    <Property Name="Stok" Type="Int32" Nullable="false" />
+    <Property Name="KategoriID" Type="Int32" />
+    <Property Name="TedarikciID" Type="Int32" />
+    <Property Name="AltYaziID" Type="Int32" />
+    <NavigationProperty Name="AltYazi" Relationship="Self.FK_Filmler_AltYazi" FromRole="Filmler" ToRole="AltYazi" />
+    <NavigationProperty Name="Film_Altyazi" Relationship="Self.FK_Film_Altyazi_Filmler" FromRole="Filmler" ToRole="Film_Altyazi" />
+    <NavigationProperty Name="FilmKategori" Relationship="Self.FK_FilmKategori_Filmler" FromRole="Filmler" ToRole="FilmKategori" />
+    <NavigationProperty Name="Kategori" Relationship="Self.FK_Filmler_Kategori" FromRole="Filmler" ToRole="Kategori" />
+    <NavigationProperty Name="Tedarikci" Relationship="Self.FK_Filmler_Tedarikci" FromRole="Filmler" ToRole="Tedarikci" />
+    <NavigationProperty Name="FilmListe" Relationship="Self.FK_FilmListe_Filmler" FromRole="Filmler" ToRole="FilmListe" />
+    <NavigationProperty Name="Tedarik_Film" Relationship="Self.FK_Tedarik_Film_Filmler" FromRole="Filmler" ToRole="Tedarik_Film" />
+    <Property Name="Gorsel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="FilmListe">
+    <Key>
+      <PropertyRef Name="FilmListeID" />
+      <PropertyRef Name="FilmID" />
+      <PropertyRef Name="ListeID" />
+    </Key>
+    <Property Name="FilmListeID" Type="Int32" Nullable="false" />
+    <Property Name="FilmID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ListeID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Filmler" Relationship="Self.FK_FilmListe_Filmler" FromRole="FilmListe" ToRole="Filmler" />
+    <NavigationProperty Name="Liste" Relationship="Self.FK_FilmListe_Liste" FromRole="FilmListe" ToRole="Liste" />
+  </EntityType>
+  <EntityType Name="Kategori">
+    <Key>
+      <PropertyRef Name="KategoriID" />
+    </Key>
+    <Property Name="KategoriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KategoriAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="FilmKategori" Relationship="Self.FK_FilmKategori_Kategori" FromRole="Kategori" ToRole="FilmKategori" />
+    <NavigationProperty Name="Filmler" Relationship="Self.FK_Filmler_Kategori" FromRole="Kategori" ToRole="Filmler" />
+  </EntityType>
+  <EntityType Name="Liste">
+    <Key>
+      <PropertyRef Name="ListeID" />
+    </Key>
+    <Property Name="ListeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FilmID" Type="Int32" />
+    <Property Name="Oncelik" Type="Int32" />
+    <Property Name="EklenmeTarihi" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="FilmListe" Relationship="Self.FK_FilmListe_Liste" FromRole="Liste" ToRole="FilmListe" />
+    <Property Name="Adet" Type="Int32" />
+    <Property Name="KullaniciID" Type="Int32" />
+    <Property Name="KullaniciUsername" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="KiralamaTarihi" Type="DateTime" Precision="3" />
+    <Property Name="GeriAlmaTarihi" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tedarik_Film">
+    <Key>
+      <PropertyRef Name="TedarikFilID" />
+      <PropertyRef Name="TedarikID" />
+      <PropertyRef Name="FilmID" />
+    </Key>
+    <Property Name="TedarikFilID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TedarikID" Type="Int32" Nullable="false" />
+    <Property Name="FilmID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Filmler" Relationship="Self.FK_Tedarik_Film_Filmler" FromRole="Tedarik_Film" ToRole="Filmler" />
+    <NavigationProperty Name="Tedarikci" Relationship="Self.FK_Tedarik_Film_Tedarikci" FromRole="Tedarik_Film" ToRole="Tedarikci" />
+  </EntityType>
+  <EntityType Name="Tedarikci">
+    <Key>
+      <PropertyRef Name="TedarikciID" />
+    </Key>
+    <Property Name="TedarikciID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TedarikciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Filmler" Relationship="Self.FK_Filmler_Tedarikci" FromRole="Tedarikci" ToRole="Filmler" />
+    <NavigationProperty Name="Tedarik_Film" Relationship="Self.FK_Tedarik_Film_Tedarikci" FromRole="Tedarikci" ToRole="Tedarik_Film" />
+  </EntityType>
+  <EntityType Name="Paket">
+    <Key>
+      <PropertyRef Name="PaketID" />
+    </Key>
+    <Property Name="PaketID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaketAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Degisim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FilmSayisi" Type="Int32" />
+    <Property Name="Ucret" Type="Decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <Association Name="FK_Film_Altyazi_AltYazi">
+    <End Role="AltYazi" Type="Self.AltYazi" Multiplicity="1" />
+    <End Role="Film_Altyazi" Type="Self.Film_Altyazi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AltYazi">
+        <PropertyRef Name="AltYaziID" />
+      </Principal>
+      <Dependent Role="Film_Altyazi">
+        <PropertyRef Name="AltyaziID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Filmler_AltYazi">
+    <End Role="AltYazi" Type="Self.AltYazi" Multiplicity="0..1" />
+    <End Role="Filmler" Type="Self.Filmler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AltYazi">
+        <PropertyRef Name="AltYaziID" />
+      </Principal>
+      <Dependent Role="Filmler">
+        <PropertyRef Name="AltYaziID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Film_Altyazi_Filmler">
+    <End Role="Filmler" Type="Self.Filmler" Multiplicity="1" />
+    <End Role="Film_Altyazi" Type="Self.Film_Altyazi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Filmler">
+        <PropertyRef Name="FilmID" />
+      </Principal>
+      <Dependent Role="Film_Altyazi">
+        <PropertyRef Name="FilmID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FilmKategori_Filmler">
+    <End Role="Filmler" Type="Self.Filmler" Multiplicity="1" />
+    <End Role="FilmKategori" Type="Self.FilmKategori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Filmler">
+        <PropertyRef Name="FilmID" />
+      </Principal>
+      <Dependent Role="FilmKategori">
+        <PropertyRef Name="FilmID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FilmKategori_Kategori">
+    <End Role="Kategori" Type="Self.Kategori" Multiplicity="1" />
+    <End Role="FilmKategori" Type="Self.FilmKategori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategori">
+        <PropertyRef Name="KategoriID" />
+      </Principal>
+      <Dependent Role="FilmKategori">
+        <PropertyRef Name="KategoriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Filmler_Kategori">
+    <End Role="Kategori" Type="Self.Kategori" Multiplicity="0..1" />
+    <End Role="Filmler" Type="Self.Filmler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategori">
+        <PropertyRef Name="KategoriID" />
+      </Principal>
+      <Dependent Role="Filmler">
+        <PropertyRef Name="KategoriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Filmler_Tedarikci">
+    <End Role="Tedarikci" Type="Self.Tedarikci" Multiplicity="0..1" />
+    <End Role="Filmler" Type="Self.Filmler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tedarikci">
+        <PropertyRef Name="TedarikciID" />
+      </Principal>
+      <Dependent Role="Filmler">
+        <PropertyRef Name="TedarikciID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FilmListe_Filmler">
+    <End Role="Filmler" Type="Self.Filmler" Multiplicity="1" />
+    <End Role="FilmListe" Type="Self.FilmListe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Filmler">
+        <PropertyRef Name="FilmID" />
+      </Principal>
+      <Dependent Role="FilmListe">
+        <PropertyRef Name="FilmID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tedarik_Film_Filmler">
+    <End Role="Filmler" Type="Self.Filmler" Multiplicity="1" />
+    <End Role="Tedarik_Film" Type="Self.Tedarik_Film" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Filmler">
+        <PropertyRef Name="FilmID" />
+      </Principal>
+      <Dependent Role="Tedarik_Film">
+        <PropertyRef Name="FilmID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FilmListe_Liste">
+    <End Role="Liste" Type="Self.Liste" Multiplicity="1" />
+    <End Role="FilmListe" Type="Self.FilmListe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Liste">
+        <PropertyRef Name="ListeID" />
+      </Principal>
+      <Dependent Role="FilmListe">
+        <PropertyRef Name="ListeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tedarik_Film_Tedarikci">
+    <End Role="Tedarikci" Type="Self.Tedarikci" Multiplicity="1" />
+    <End Role="Tedarik_Film" Type="Self.Tedarik_Film" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tedarikci">
+        <PropertyRef Name="TedarikciID" />
+      </Principal>
+      <Dependent Role="Tedarik_Film">
+        <PropertyRef Name="TedarikID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FilmDukkaniEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AltYazi" EntityType="Self.AltYazi" />
+    <EntitySet Name="Film_Altyazi" EntityType="Self.Film_Altyazi" />
+    <EntitySet Name="FilmKategori" EntityType="Self.FilmKategori" />
+    <EntitySet Name="Filmler" EntityType="Self.Filmler" />
+    <EntitySet Name="FilmListe" EntityType="Self.FilmListe" />
+    <EntitySet Name="Kategori" EntityType="Self.Kategori" />
+    <EntitySet Name="Liste" EntityType="Self.Liste" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Tedarik_Film" EntityType="Self.Tedarik_Film" />
+    <EntitySet Name="Tedarikci" EntityType="Self.Tedarikci" />
+    <EntitySet Name="Paket" EntityType="Self.Paket" />
+    <AssociationSet Name="FK_Film_Altyazi_AltYazi" Association="Self.FK_Film_Altyazi_AltYazi">
+      <End Role="AltYazi" EntitySet="AltYazi" />
+      <End Role="Film_Altyazi" EntitySet="Film_Altyazi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Filmler_AltYazi" Association="Self.FK_Filmler_AltYazi">
+      <End Role="AltYazi" EntitySet="AltYazi" />
+      <End Role="Filmler" EntitySet="Filmler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Film_Altyazi_Filmler" Association="Self.FK_Film_Altyazi_Filmler">
+      <End Role="Filmler" EntitySet="Filmler" />
+      <End Role="Film_Altyazi" EntitySet="Film_Altyazi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FilmKategori_Filmler" Association="Self.FK_FilmKategori_Filmler">
+      <End Role="Filmler" EntitySet="Filmler" />
+      <End Role="FilmKategori" EntitySet="FilmKategori" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FilmKategori_Kategori" Association="Self.FK_FilmKategori_Kategori">
+      <End Role="Kategori" EntitySet="Kategori" />
+      <End Role="FilmKategori" EntitySet="FilmKategori" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Filmler_Kategori" Association="Self.FK_Filmler_Kategori">
+      <End Role="Kategori" EntitySet="Kategori" />
+      <End Role="Filmler" EntitySet="Filmler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Filmler_Tedarikci" Association="Self.FK_Filmler_Tedarikci">
+      <End Role="Tedarikci" EntitySet="Tedarikci" />
+      <End Role="Filmler" EntitySet="Filmler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FilmListe_Filmler" Association="Self.FK_FilmListe_Filmler">
+      <End Role="Filmler" EntitySet="Filmler" />
+      <End Role="FilmListe" EntitySet="FilmListe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tedarik_Film_Filmler" Association="Self.FK_Tedarik_Film_Filmler">
+      <End Role="Filmler" EntitySet="Filmler" />
+      <End Role="Tedarik_Film" EntitySet="Tedarik_Film" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FilmListe_Liste" Association="Self.FK_FilmListe_Liste">
+      <End Role="Liste" EntitySet="Liste" />
+      <End Role="FilmListe" EntitySet="FilmListe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tedarik_Film_Tedarikci" Association="Self.FK_Tedarik_Film_Tedarikci">
+      <End Role="Tedarikci" EntitySet="Tedarikci" />
+      <End Role="Tedarik_Film" EntitySet="Tedarik_Film" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(FilmDukkaniModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(FilmDukkaniModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="aspnet_Applications" EntityType="FilmDukkaniModel.aspnet_Applications" />
+    <EntitySet Name="aspnet_Membership" EntityType="FilmDukkaniModel.aspnet_Membership" />
+    <EntitySet Name="aspnet_Paths" EntityType="FilmDukkaniModel.aspnet_Paths" />
+    <EntitySet Name="aspnet_PersonalizationAllUsers" EntityType="FilmDukkaniModel.aspnet_PersonalizationAllUsers" />
+    <EntitySet Name="aspnet_PersonalizationPerUser" EntityType="FilmDukkaniModel.aspnet_PersonalizationPerUser" />
+    <EntitySet Name="aspnet_Profile" EntityType="FilmDukkaniModel.aspnet_Profile" />
+    <EntitySet Name="aspnet_Roles" EntityType="FilmDukkaniModel.aspnet_Roles" />
+    <EntitySet Name="aspnet_SchemaVersions" EntityType="FilmDukkaniModel.aspnet_SchemaVersions" />
+    <EntitySet Name="aspnet_Users" EntityType="FilmDukkaniModel.aspnet_Users" />
+    <EntitySet Name="aspnet_WebEvent_Events" EntityType="FilmDukkaniModel.aspnet_WebEvent_Events" />
+    <AssociationSet Name="FK__aspnet_Me__Appli__09746778" Association="FilmDukkaniModel.FK__aspnet_Me__Appli__09746778">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pa__Appli__3B0BC30C" Association="FilmDukkaniModel.FK__aspnet_Pa__Appli__3B0BC30C">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Ro__Appli__27F8EE98" Association="FilmDukkaniModel.FK__aspnet_Ro__Appli__27F8EE98">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Us__Appli__793DFFAF" Association="FilmDukkaniModel.FK__aspnet_Us__Appli__793DFFAF">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Me__UserI__0A688BB1" Association="FilmDukkaniModel.FK__aspnet_Me__UserI__0A688BB1">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pe__PathI__40C49C62" Association="FilmDukkaniModel.FK__aspnet_Pe__PathI__40C49C62">
+      <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+      <End Role="aspnet_PersonalizationAllUsers" EntitySet="aspnet_PersonalizationAllUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pe__PathI__44952D46" Association="FilmDukkaniModel.FK__aspnet_Pe__PathI__44952D46">
+      <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+      <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pe__UserI__4589517F" Association="FilmDukkaniModel.FK__aspnet_Pe__UserI__4589517F">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pr__UserI__1E6F845E" Association="FilmDukkaniModel.FK__aspnet_Pr__UserI__1E6F845E">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="aspnet_Profile" EntitySet="aspnet_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="aspnet_UsersInRoles" Association="FilmDukkaniModel.aspnet_UsersInRoles">
+      <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+    </AssociationSet>
+    <EntitySet Name="SepetimdekiFilmler" EntityType="FilmDukkaniModel.SepetimdekiFilmler" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="aspnet_Applications">
+    <Key>
+      <PropertyRef Name="ApplicationId" />
+    </Key>
+    <Property Name="ApplicationName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="LoweredApplicationName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="aspnet_Membership" Relationship="FilmDukkaniModel.FK__aspnet_Me__Appli__09746778" FromRole="aspnet_Applications" ToRole="aspnet_Membership" />
+    <NavigationProperty Name="aspnet_Paths" Relationship="FilmDukkaniModel.FK__aspnet_Pa__Appli__3B0BC30C" FromRole="aspnet_Applications" ToRole="aspnet_Paths" />
+    <NavigationProperty Name="aspnet_Roles" Relationship="FilmDukkaniModel.FK__aspnet_Ro__Appli__27F8EE98" FromRole="aspnet_Applications" ToRole="aspnet_Roles" />
+    <NavigationProperty Name="aspnet_Users" Relationship="FilmDukkaniModel.FK__aspnet_Us__Appli__793DFFAF" FromRole="aspnet_Applications" ToRole="aspnet_Users" />
+  </EntityType>
+  <EntityType Name="aspnet_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordFormat" Type="Int32" Nullable="false" />
+    <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="MobilePIN" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="LoweredEmail" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordQuestion" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordAnswer" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="IsApproved" Type="Boolean" Nullable="false" />
+    <Property Name="IsLockedOut" Type="Boolean" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastLoginDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastPasswordChangedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastLockoutDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FailedPasswordAttemptCount" Type="Int32" Nullable="false" />
+    <Property Name="FailedPasswordAttemptWindowStart" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FailedPasswordAnswerAttemptCount" Type="Int32" Nullable="false" />
+    <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="aspnet_Applications" Relationship="FilmDukkaniModel.FK__aspnet_Me__Appli__09746778" FromRole="aspnet_Membership" ToRole="aspnet_Applications" />
+    <NavigationProperty Name="aspnet_Users" Relationship="FilmDukkaniModel.FK__aspnet_Me__UserI__0A688BB1" FromRole="aspnet_Membership" ToRole="aspnet_Users" />
+  </EntityType>
+  <EntityType Name="aspnet_Paths">
+    <Key>
+      <PropertyRef Name="PathId" />
+    </Key>
+    <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+    <Property Name="PathId" Type="Guid" Nullable="false" />
+    <Property Name="Path" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="LoweredPath" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="aspnet_Applications" Relationship="FilmDukkaniModel.FK__aspnet_Pa__Appli__3B0BC30C" FromRole="aspnet_Paths" ToRole="aspnet_Applications" />
+    <NavigationProperty Name="aspnet_PersonalizationAllUsers" Relationship="FilmDukkaniModel.FK__aspnet_Pe__PathI__40C49C62" FromRole="aspnet_Paths" ToRole="aspnet_PersonalizationAllUsers" />
+    <NavigationProperty Name="aspnet_PersonalizationPerUser" Relationship="FilmDukkaniModel.FK__aspnet_Pe__PathI__44952D46" FromRole="aspnet_Paths" ToRole="aspnet_PersonalizationPerUser" />
+  </EntityType>
+  <EntityType Name="aspnet_PersonalizationAllUsers">
+    <Key>
+      <PropertyRef Name="PathId" />
+    </Key>
+    <Property Name="PathId" Type="Guid" Nullable="false" />
+    <Property Name="PageSettings" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="aspnet_Paths" Relationship="FilmDukkaniModel.FK__aspnet_Pe__PathI__40C49C62" FromRole="aspnet_PersonalizationAllUsers" ToRole="aspnet_Paths" />
+  </EntityType>
+  <EntityType Name="aspnet_PersonalizationPerUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="PathId" Type="Guid" />
+    <Property Name="UserId" Type="Guid" />
+    <Property Name="PageSettings" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="aspnet_Paths" Relationship="FilmDukkaniModel.FK__aspnet_Pe__PathI__44952D46" FromRole="aspnet_PersonalizationPerUser" ToRole="aspnet_Paths" />
+    <NavigationProperty Name="aspnet_Users" Relationship="FilmDukkaniModel.FK__aspnet_Pe__UserI__4589517F" FromRole="aspnet_PersonalizationPerUser" ToRole="aspnet_Users" />
+  </EntityType>
+  <EntityType Name="aspnet_Profile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="PropertyNames" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PropertyValuesString" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PropertyValuesBinary" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="aspnet_Users" Relationship="FilmDukkaniModel.FK__aspnet_Pr__UserI__1E6F845E" FromRole="aspnet_Profile" ToRole="aspnet_Users" />
+  </EntityType>
+  <EntityType Name="aspnet_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+    <Property Name="RoleId" Type="Guid" Nullable="false" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="LoweredRoleName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="aspnet_Applications" Relationship="FilmDukkaniModel.FK__aspnet_Ro__Appli__27F8EE98" FromRole="aspnet_Roles" ToRole="aspnet_Applications" />
+    <NavigationProperty Name="aspnet_Users" Relationship="FilmDukkaniModel.aspnet_UsersInRoles" FromRole="aspnet_Roles" ToRole="aspnet_Users" />
+  </EntityType>
+  <EntityType Name="aspnet_SchemaVersions">
+    <Key>
+      <PropertyRef Name="Feature" />
+      <PropertyRef Name="CompatibleSchemaVersion" />
+    </Key>
+    <Property Name="Feature" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CompatibleSchemaVersion" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="IsCurrentVersion" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="LoweredUserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="MobileAlias" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="IsAnonymous" Type="Boolean" Nullable="false" />
+    <Property Name="LastActivityDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="aspnet_Applications" Relationship="FilmDukkaniModel.FK__aspnet_Us__Appli__793DFFAF" FromRole="aspnet_Users" ToRole="aspnet_Applications" />
+    <NavigationProperty Name="aspnet_Membership" Relationship="FilmDukkaniModel.FK__aspnet_Me__UserI__0A688BB1" FromRole="aspnet_Users" ToRole="aspnet_Membership" />
+    <NavigationProperty Name="aspnet_PersonalizationPerUser" Relationship="FilmDukkaniModel.FK__aspnet_Pe__UserI__4589517F" FromRole="aspnet_Users" ToRole="aspnet_PersonalizationPerUser" />
+    <NavigationProperty Name="aspnet_Profile" Relationship="FilmDukkaniModel.FK__aspnet_Pr__UserI__1E6F845E" FromRole="aspnet_Users" ToRole="aspnet_Profile" />
+    <NavigationProperty Name="aspnet_Roles" Relationship="FilmDukkaniModel.aspnet_UsersInRoles" FromRole="aspnet_Users" ToRole="aspnet_Roles" />
+  </EntityType>
+  <EntityType Name="aspnet_WebEvent_Events">
+    <Key>
+      <PropertyRef Name="EventId" />
+    </Key>
+    <Property Name="EventId" Type="String" Nullable="false" MaxLength="32" FixedLength="true" Unicode="false" />
+    <Property Name="EventTimeUtc" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EventTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EventType" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EventSequence" Type="Decimal" Nullable="false" Precision="19" Scale="0" />
+    <Property Name="EventOccurrence" Type="Decimal" Nullable="false" Precision="19" Scale="0" />
+    <Property Name="EventCode" Type="Int32" Nullable="false" />
+    <Property Name="EventDetailCode" Type="Int32" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="ApplicationPath" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="ApplicationVirtualPath" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="MachineName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="RequestUrl" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="ExceptionType" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK__aspnet_Me__Appli__09746778">
+    <End Type="FilmDukkaniModel.aspnet_Applications" Role="aspnet_Applications" Multiplicity="1" />
+    <End Type="FilmDukkaniModel.aspnet_Membership" Role="aspnet_Membership" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Membership">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pa__Appli__3B0BC30C">
+    <End Type="FilmDukkaniModel.aspnet_Applications" Role="aspnet_Applications" Multiplicity="1" />
+    <End Type="FilmDukkaniModel.aspnet_Paths" Role="aspnet_Paths" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Paths">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Ro__Appli__27F8EE98">
+    <End Type="FilmDukkaniModel.aspnet_Applications" Role="aspnet_Applications" Multiplicity="1" />
+    <End Type="FilmDukkaniModel.aspnet_Roles" Role="aspnet_Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Roles">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Us__Appli__793DFFAF">
+    <End Type="FilmDukkaniModel.aspnet_Applications" Role="aspnet_Applications" Multiplicity="1" />
+    <End Type="FilmDukkaniModel.aspnet_Users" Role="aspnet_Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Users">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Me__UserI__0A688BB1">
+    <End Type="FilmDukkaniModel.aspnet_Users" Role="aspnet_Users" Multiplicity="1" />
+    <End Type="FilmDukkaniModel.aspnet_Membership" Role="aspnet_Membership" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="aspnet_Membership">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pe__PathI__40C49C62">
+    <End Type="FilmDukkaniModel.aspnet_Paths" Role="aspnet_Paths" Multiplicity="1" />
+    <End Type="FilmDukkaniModel.aspnet_PersonalizationAllUsers" Role="aspnet_PersonalizationAllUsers" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Paths">
+        <PropertyRef Name="PathId" />
+      </Principal>
+      <Dependent Role="aspnet_PersonalizationAllUsers">
+        <PropertyRef Name="PathId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pe__PathI__44952D46">
+    <End Type="FilmDukkaniModel.aspnet_Paths" Role="aspnet_Paths" Multiplicity="0..1" />
+    <End Type="FilmDukkaniModel.aspnet_PersonalizationPerUser" Role="aspnet_PersonalizationPerUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Paths">
+        <PropertyRef Name="PathId" />
+      </Principal>
+      <Dependent Role="aspnet_PersonalizationPerUser">
+        <PropertyRef Name="PathId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pe__UserI__4589517F">
+    <End Type="FilmDukkaniModel.aspnet_Users" Role="aspnet_Users" Multiplicity="0..1" />
+    <End Type="FilmDukkaniModel.aspnet_PersonalizationPerUser" Role="aspnet_PersonalizationPerUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="aspnet_PersonalizationPerUser">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pr__UserI__1E6F845E">
+    <End Type="FilmDukkaniModel.aspnet_Users" Role="aspnet_Users" Multiplicity="1" />
+    <End Type="FilmDukkaniModel.aspnet_Profile" Role="aspnet_Profile" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="aspnet_Profile">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="aspnet_UsersInRoles">
+    <End Type="FilmDukkaniModel.aspnet_Roles" Role="aspnet_Roles" Multiplicity="*" />
+    <End Type="FilmDukkaniModel.aspnet_Users" Role="aspnet_Users" Multiplicity="*" />
+  </Association>
+  <EntityType Name="SepetimdekiFilmler">
+    <Key>
+      <PropertyRef Name="FilmAdi" />
+    </Key>
+    <Property Name="EklenmeTarihi" Type="DateTime" Precision="0" />
+    <Property Name="Adet" Type="Int32" />
+    <Property Name="KullaniciUsername" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="FilmId" Type="Int32" />
+    <Property Name="FilmAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

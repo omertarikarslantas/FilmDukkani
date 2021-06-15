@@ -1,0 +1,675 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FilmDukkaniModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AltYazi">
+    <Key>
+      <PropertyRef Name="AltYaziID" />
+    </Key>
+    <Property Name="AltYaziID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AltYaziAdi" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="aspnet_Applications">
+    <Key>
+      <PropertyRef Name="ApplicationId" />
+    </Key>
+    <Property Name="ApplicationName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="LoweredApplicationName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="aspnet_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="PasswordFormat" Type="int" Nullable="false" />
+    <Property Name="PasswordSalt" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="MobilePIN" Type="nvarchar" MaxLength="16" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="LoweredEmail" Type="nvarchar" MaxLength="256" />
+    <Property Name="PasswordQuestion" Type="nvarchar" MaxLength="256" />
+    <Property Name="PasswordAnswer" Type="nvarchar" MaxLength="128" />
+    <Property Name="IsApproved" Type="bit" Nullable="false" />
+    <Property Name="IsLockedOut" Type="bit" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
+    <Property Name="LastPasswordChangedDate" Type="datetime" Nullable="false" />
+    <Property Name="LastLockoutDate" Type="datetime" Nullable="false" />
+    <Property Name="FailedPasswordAttemptCount" Type="int" Nullable="false" />
+    <Property Name="FailedPasswordAttemptWindowStart" Type="datetime" Nullable="false" />
+    <Property Name="FailedPasswordAnswerAttemptCount" Type="int" Nullable="false" />
+    <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="datetime" Nullable="false" />
+    <Property Name="Comment" Type="ntext" />
+  </EntityType>
+  <EntityType Name="aspnet_Paths">
+    <Key>
+      <PropertyRef Name="PathId" />
+    </Key>
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PathId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Path" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="LoweredPath" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_PersonalizationAllUsers">
+    <Key>
+      <PropertyRef Name="PathId" />
+    </Key>
+    <Property Name="PathId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PageSettings" Type="image" Nullable="false" />
+    <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_PersonalizationPerUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PathId" Type="uniqueidentifier" />
+    <Property Name="UserId" Type="uniqueidentifier" />
+    <Property Name="PageSettings" Type="image" Nullable="false" />
+    <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_Profile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PropertyNames" Type="ntext" Nullable="false" />
+    <Property Name="PropertyValuesString" Type="ntext" Nullable="false" />
+    <Property Name="PropertyValuesBinary" Type="image" Nullable="false" />
+    <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="LoweredRoleName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="aspnet_SchemaVersions">
+    <Key>
+      <PropertyRef Name="Feature" />
+      <PropertyRef Name="CompatibleSchemaVersion" />
+    </Key>
+    <Property Name="Feature" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="CompatibleSchemaVersion" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="IsCurrentVersion" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="LoweredUserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="MobileAlias" Type="nvarchar" MaxLength="16" />
+    <Property Name="IsAnonymous" Type="bit" Nullable="false" />
+    <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_UsersInRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_WebEvent_Events">
+    <Key>
+      <PropertyRef Name="EventId" />
+    </Key>
+    <Property Name="EventId" Type="char" MaxLength="32" Nullable="false" />
+    <Property Name="EventTimeUtc" Type="datetime" Nullable="false" />
+    <Property Name="EventTime" Type="datetime" Nullable="false" />
+    <Property Name="EventType" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="EventSequence" Type="decimal" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="EventOccurrence" Type="decimal" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="EventCode" Type="int" Nullable="false" />
+    <Property Name="EventDetailCode" Type="int" Nullable="false" />
+    <Property Name="Message" Type="nvarchar" MaxLength="1024" />
+    <Property Name="ApplicationPath" Type="nvarchar" MaxLength="256" />
+    <Property Name="ApplicationVirtualPath" Type="nvarchar" MaxLength="256" />
+    <Property Name="MachineName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="RequestUrl" Type="nvarchar" MaxLength="1024" />
+    <Property Name="ExceptionType" Type="nvarchar" MaxLength="256" />
+    <Property Name="Details" Type="ntext" />
+  </EntityType>
+  <EntityType Name="Film_Altyazi">
+    <Key>
+      <PropertyRef Name="FilmAltID" />
+      <PropertyRef Name="AltyaziID" />
+      <PropertyRef Name="FilmID" />
+    </Key>
+    <Property Name="FilmAltID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AltyaziID" Type="int" Nullable="false" />
+    <Property Name="FilmID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FilmKategori">
+    <Key>
+      <PropertyRef Name="FilmKategoriID" />
+      <PropertyRef Name="KategoriID" />
+      <PropertyRef Name="FilmID" />
+    </Key>
+    <Property Name="FilmKategoriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KategoriID" Type="int" Nullable="false" />
+    <Property Name="FilmID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Filmler">
+    <Key>
+      <PropertyRef Name="FilmID" />
+    </Key>
+    <Property Name="FilmID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FilmAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Yonetmen" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Ozet" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Oyuncular" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="YapimYili" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="AldigiOduller" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="BarkodNo" Type="int" Nullable="false" />
+    <Property Name="Stok" Type="int" Nullable="false" />
+    <Property Name="KategoriID" Type="int" />
+    <Property Name="TedarikciID" Type="int" />
+    <Property Name="AltYaziID" Type="int" />
+    <Property Name="Gorsel" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="FilmListe">
+    <Key>
+      <PropertyRef Name="FilmListeID" />
+      <PropertyRef Name="FilmID" />
+      <PropertyRef Name="ListeID" />
+    </Key>
+    <Property Name="FilmListeID" Type="int" Nullable="false" />
+    <Property Name="FilmID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ListeID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Kategori">
+    <Key>
+      <PropertyRef Name="KategoriID" />
+    </Key>
+    <Property Name="KategoriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KategoriAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Liste">
+    <Key>
+      <PropertyRef Name="ListeID" />
+    </Key>
+    <Property Name="ListeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FilmID" Type="int" />
+    <Property Name="Oncelik" Type="int" />
+    <Property Name="EklenmeTarihi" Type="date" />
+    <Property Name="Adet" Type="int" />
+    <Property Name="KullaniciID" Type="int" />
+    <Property Name="KullaniciUsername" Type="varchar" MaxLength="255" />
+    <Property Name="KiralamaTarihi" Type="datetime" />
+    <Property Name="GeriAlmaTarihi" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Paket">
+    <Key>
+      <PropertyRef Name="PaketID" />
+    </Key>
+    <Property Name="PaketID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PaketAdi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Degisim" Type="nvarchar" MaxLength="50" />
+    <Property Name="FilmSayisi" Type="int" />
+    <Property Name="Ucret" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Tedarik_Film">
+    <Key>
+      <PropertyRef Name="TedarikFilID" />
+      <PropertyRef Name="TedarikID" />
+      <PropertyRef Name="FilmID" />
+    </Key>
+    <Property Name="TedarikFilID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TedarikID" Type="int" Nullable="false" />
+    <Property Name="FilmID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tedarikci">
+    <Key>
+      <PropertyRef Name="TedarikciID" />
+    </Key>
+    <Property Name="TedarikciID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TedarikciAdi" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FilmDukkani.dbo.SepetimdekiFilmler' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="SepetimdekiFilmler">
+    <Key>
+      <PropertyRef Name="FilmAdi" />
+    </Key>
+    <Property Name="EklenmeTarihi" Type="date" />
+    <Property Name="Adet" Type="int" />
+    <Property Name="KullaniciUsername" Type="varchar" MaxLength="255" />
+    <Property Name="FilmId" Type="int" />
+    <Property Name="FilmAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__aspnet_Me__Appli__09746778">
+    <End Role="aspnet_Applications" Type="Self.aspnet_Applications" Multiplicity="1" />
+    <End Role="aspnet_Membership" Type="Self.aspnet_Membership" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Membership">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Me__UserI__0A688BB1">
+    <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="1" />
+    <End Role="aspnet_Membership" Type="Self.aspnet_Membership" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="aspnet_Membership">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pa__Appli__3B0BC30C">
+    <End Role="aspnet_Applications" Type="Self.aspnet_Applications" Multiplicity="1" />
+    <End Role="aspnet_Paths" Type="Self.aspnet_Paths" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Paths">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pe__PathI__40C49C62">
+    <End Role="aspnet_Paths" Type="Self.aspnet_Paths" Multiplicity="1" />
+    <End Role="aspnet_PersonalizationAllUsers" Type="Self.aspnet_PersonalizationAllUsers" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Paths">
+        <PropertyRef Name="PathId" />
+      </Principal>
+      <Dependent Role="aspnet_PersonalizationAllUsers">
+        <PropertyRef Name="PathId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pe__PathI__44952D46">
+    <End Role="aspnet_Paths" Type="Self.aspnet_Paths" Multiplicity="0..1" />
+    <End Role="aspnet_PersonalizationPerUser" Type="Self.aspnet_PersonalizationPerUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Paths">
+        <PropertyRef Name="PathId" />
+      </Principal>
+      <Dependent Role="aspnet_PersonalizationPerUser">
+        <PropertyRef Name="PathId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pe__UserI__4589517F">
+    <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="0..1" />
+    <End Role="aspnet_PersonalizationPerUser" Type="Self.aspnet_PersonalizationPerUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="aspnet_PersonalizationPerUser">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pr__UserI__1E6F845E">
+    <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="1" />
+    <End Role="aspnet_Profile" Type="Self.aspnet_Profile" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="aspnet_Profile">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Ro__Appli__27F8EE98">
+    <End Role="aspnet_Applications" Type="Self.aspnet_Applications" Multiplicity="1" />
+    <End Role="aspnet_Roles" Type="Self.aspnet_Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Roles">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Us__Appli__793DFFAF">
+    <End Role="aspnet_Applications" Type="Self.aspnet_Applications" Multiplicity="1" />
+    <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Users">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Us__RoleI__2CBDA3B5">
+    <End Role="aspnet_Roles" Type="Self.aspnet_Roles" Multiplicity="1" />
+    <End Role="aspnet_UsersInRoles" Type="Self.aspnet_UsersInRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Roles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="aspnet_UsersInRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Us__UserI__2BC97F7C">
+    <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="1" />
+    <End Role="aspnet_UsersInRoles" Type="Self.aspnet_UsersInRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="aspnet_UsersInRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Film_Altyazi_AltYazi">
+    <End Role="AltYazi" Type="Self.AltYazi" Multiplicity="1" />
+    <End Role="Film_Altyazi" Type="Self.Film_Altyazi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AltYazi">
+        <PropertyRef Name="AltYaziID" />
+      </Principal>
+      <Dependent Role="Film_Altyazi">
+        <PropertyRef Name="AltyaziID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Film_Altyazi_Filmler">
+    <End Role="Filmler" Type="Self.Filmler" Multiplicity="1" />
+    <End Role="Film_Altyazi" Type="Self.Film_Altyazi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Filmler">
+        <PropertyRef Name="FilmID" />
+      </Principal>
+      <Dependent Role="Film_Altyazi">
+        <PropertyRef Name="FilmID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FilmKategori_Filmler">
+    <End Role="Filmler" Type="Self.Filmler" Multiplicity="1" />
+    <End Role="FilmKategori" Type="Self.FilmKategori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Filmler">
+        <PropertyRef Name="FilmID" />
+      </Principal>
+      <Dependent Role="FilmKategori">
+        <PropertyRef Name="FilmID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FilmKategori_Kategori">
+    <End Role="Kategori" Type="Self.Kategori" Multiplicity="1" />
+    <End Role="FilmKategori" Type="Self.FilmKategori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategori">
+        <PropertyRef Name="KategoriID" />
+      </Principal>
+      <Dependent Role="FilmKategori">
+        <PropertyRef Name="KategoriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Filmler_AltYazi">
+    <End Role="AltYazi" Type="Self.AltYazi" Multiplicity="0..1" />
+    <End Role="Filmler" Type="Self.Filmler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AltYazi">
+        <PropertyRef Name="AltYaziID" />
+      </Principal>
+      <Dependent Role="Filmler">
+        <PropertyRef Name="AltYaziID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Filmler_Kategori">
+    <End Role="Kategori" Type="Self.Kategori" Multiplicity="0..1" />
+    <End Role="Filmler" Type="Self.Filmler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategori">
+        <PropertyRef Name="KategoriID" />
+      </Principal>
+      <Dependent Role="Filmler">
+        <PropertyRef Name="KategoriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Filmler_Tedarikci">
+    <End Role="Tedarikci" Type="Self.Tedarikci" Multiplicity="0..1" />
+    <End Role="Filmler" Type="Self.Filmler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tedarikci">
+        <PropertyRef Name="TedarikciID" />
+      </Principal>
+      <Dependent Role="Filmler">
+        <PropertyRef Name="TedarikciID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FilmListe_Filmler">
+    <End Role="Filmler" Type="Self.Filmler" Multiplicity="1" />
+    <End Role="FilmListe" Type="Self.FilmListe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Filmler">
+        <PropertyRef Name="FilmID" />
+      </Principal>
+      <Dependent Role="FilmListe">
+        <PropertyRef Name="FilmID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FilmListe_Liste">
+    <End Role="Liste" Type="Self.Liste" Multiplicity="1" />
+    <End Role="FilmListe" Type="Self.FilmListe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Liste">
+        <PropertyRef Name="ListeID" />
+      </Principal>
+      <Dependent Role="FilmListe">
+        <PropertyRef Name="ListeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tedarik_Film_Filmler">
+    <End Role="Filmler" Type="Self.Filmler" Multiplicity="1" />
+    <End Role="Tedarik_Film" Type="Self.Tedarik_Film" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Filmler">
+        <PropertyRef Name="FilmID" />
+      </Principal>
+      <Dependent Role="Tedarik_Film">
+        <PropertyRef Name="FilmID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tedarik_Film_Tedarikci">
+    <End Role="Tedarikci" Type="Self.Tedarikci" Multiplicity="1" />
+    <End Role="Tedarik_Film" Type="Self.Tedarik_Film" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tedarikci">
+        <PropertyRef Name="TedarikciID" />
+      </Principal>
+      <Dependent Role="Tedarik_Film">
+        <PropertyRef Name="TedarikID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="FilmDukkaniModelStoreContainer">
+    <EntitySet Name="AltYazi" EntityType="Self.AltYazi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="aspnet_Applications" EntityType="Self.aspnet_Applications" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="aspnet_Membership" EntityType="Self.aspnet_Membership" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="aspnet_Paths" EntityType="Self.aspnet_Paths" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="aspnet_PersonalizationAllUsers" EntityType="Self.aspnet_PersonalizationAllUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="aspnet_PersonalizationPerUser" EntityType="Self.aspnet_PersonalizationPerUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="aspnet_Profile" EntityType="Self.aspnet_Profile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="aspnet_Roles" EntityType="Self.aspnet_Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="aspnet_SchemaVersions" EntityType="Self.aspnet_SchemaVersions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="aspnet_Users" EntityType="Self.aspnet_Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="aspnet_UsersInRoles" EntityType="Self.aspnet_UsersInRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="aspnet_WebEvent_Events" EntityType="Self.aspnet_WebEvent_Events" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Film_Altyazi" EntityType="Self.Film_Altyazi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FilmKategori" EntityType="Self.FilmKategori" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Filmler" EntityType="Self.Filmler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FilmListe" EntityType="Self.FilmListe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kategori" EntityType="Self.Kategori" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Liste" EntityType="Self.Liste" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Paket" EntityType="Self.Paket" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tedarik_Film" EntityType="Self.Tedarik_Film" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tedarikci" EntityType="Self.Tedarikci" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SepetimdekiFilmler" EntityType="Self.SepetimdekiFilmler" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [SepetimdekiFilmler].[EklenmeTarihi] AS [EklenmeTarihi], 
+    [SepetimdekiFilmler].[Adet] AS [Adet], 
+    [SepetimdekiFilmler].[KullaniciUsername] AS [KullaniciUsername], 
+    [SepetimdekiFilmler].[FilmId] AS [FilmId], 
+    [SepetimdekiFilmler].[FilmAdi] AS [FilmAdi]
+    FROM [dbo].[SepetimdekiFilmler] AS [SepetimdekiFilmler]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__aspnet_Me__Appli__09746778" Association="Self.FK__aspnet_Me__Appli__09746778">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Me__UserI__0A688BB1" Association="Self.FK__aspnet_Me__UserI__0A688BB1">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pa__Appli__3B0BC30C" Association="Self.FK__aspnet_Pa__Appli__3B0BC30C">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pe__PathI__40C49C62" Association="Self.FK__aspnet_Pe__PathI__40C49C62">
+      <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+      <End Role="aspnet_PersonalizationAllUsers" EntitySet="aspnet_PersonalizationAllUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pe__PathI__44952D46" Association="Self.FK__aspnet_Pe__PathI__44952D46">
+      <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+      <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pe__UserI__4589517F" Association="Self.FK__aspnet_Pe__UserI__4589517F">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pr__UserI__1E6F845E" Association="Self.FK__aspnet_Pr__UserI__1E6F845E">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="aspnet_Profile" EntitySet="aspnet_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Ro__Appli__27F8EE98" Association="Self.FK__aspnet_Ro__Appli__27F8EE98">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Us__Appli__793DFFAF" Association="Self.FK__aspnet_Us__Appli__793DFFAF">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Us__RoleI__2CBDA3B5" Association="Self.FK__aspnet_Us__RoleI__2CBDA3B5">
+      <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+      <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Us__UserI__2BC97F7C" Association="Self.FK__aspnet_Us__UserI__2BC97F7C">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Film_Altyazi_AltYazi" Association="Self.FK_Film_Altyazi_AltYazi">
+      <End Role="AltYazi" EntitySet="AltYazi" />
+      <End Role="Film_Altyazi" EntitySet="Film_Altyazi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Film_Altyazi_Filmler" Association="Self.FK_Film_Altyazi_Filmler">
+      <End Role="Filmler" EntitySet="Filmler" />
+      <End Role="Film_Altyazi" EntitySet="Film_Altyazi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FilmKategori_Filmler" Association="Self.FK_FilmKategori_Filmler">
+      <End Role="Filmler" EntitySet="Filmler" />
+      <End Role="FilmKategori" EntitySet="FilmKategori" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FilmKategori_Kategori" Association="Self.FK_FilmKategori_Kategori">
+      <End Role="Kategori" EntitySet="Kategori" />
+      <End Role="FilmKategori" EntitySet="FilmKategori" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Filmler_AltYazi" Association="Self.FK_Filmler_AltYazi">
+      <End Role="AltYazi" EntitySet="AltYazi" />
+      <End Role="Filmler" EntitySet="Filmler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Filmler_Kategori" Association="Self.FK_Filmler_Kategori">
+      <End Role="Kategori" EntitySet="Kategori" />
+      <End Role="Filmler" EntitySet="Filmler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Filmler_Tedarikci" Association="Self.FK_Filmler_Tedarikci">
+      <End Role="Tedarikci" EntitySet="Tedarikci" />
+      <End Role="Filmler" EntitySet="Filmler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FilmListe_Filmler" Association="Self.FK_FilmListe_Filmler">
+      <End Role="Filmler" EntitySet="Filmler" />
+      <End Role="FilmListe" EntitySet="FilmListe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FilmListe_Liste" Association="Self.FK_FilmListe_Liste">
+      <End Role="Liste" EntitySet="Liste" />
+      <End Role="FilmListe" EntitySet="FilmListe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tedarik_Film_Filmler" Association="Self.FK_Tedarik_Film_Filmler">
+      <End Role="Filmler" EntitySet="Filmler" />
+      <End Role="Tedarik_Film" EntitySet="Tedarik_Film" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tedarik_Film_Tedarikci" Association="Self.FK_Tedarik_Film_Tedarikci">
+      <End Role="Tedarikci" EntitySet="Tedarikci" />
+      <End Role="Tedarik_Film" EntitySet="Tedarik_Film" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Paket Ekle";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-heading">
+                <div class="main-text h2">
+                    Paket Ekleme Sayfası
+                </div>
+                <div class="block-controls">
+                    <a href="/Paket/Index"><span aria-hidden="true" class="icon icon-cross icon-size-medium block-control-remove"></span></a>
+                    <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+                </div>
+            </div>
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <form action="/Paket/Ekle" method="post" role="form">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Paket Adı</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Paket Adı Giriniz" name="PaketAdi">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Değişim</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Değişim Giriniz" name="Degisim">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1"> Film Sayısı</label>
+                            <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Film Sayısını Giriniz" name="FilmSayisi">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1"> Ücret</label>
+                            <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Ücret Giriniz" name="Ucret">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Kaydet</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

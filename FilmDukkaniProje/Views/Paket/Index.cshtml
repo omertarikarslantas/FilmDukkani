@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Paketler";
+}
+
+@using FilmDukkaniProje.Models
+@model List<Paket>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-heading">
+                <div class="main-text h2">
+                    Paketler
+                </div>
+                <div class="block-controls">
+                    <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+                    <a href="/Paket/Ekle" class="btn btn-success">Yenİ Paket</a>
+                </div>
+            </div>
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <table class="table table-striped table-hover">
+                      <thead>
+                          <tr>
+                              <th>Paket Adi</th>
+                              <th>Degişim</th>
+                              <th>Film Sayısı</th>
+                              <th>Ücret</th>
+                              <th>Sil</th>
+                          </tr>
+                      </thead>
+                        <tbody>
+                            @foreach (Paket pkt in Model)
+                            {
+                            <tr>
+                                <td>@pkt.PaketAdi</td>
+                                <td>@pkt.Degisim</td>
+                                <td>@pkt.FilmSayisi</td>
+                                <td>@pkt.Ucret</td>
+                                <td><a href="#" class="btn btn-danger pktSil" data-pktid="@pkt.PaketID">Sil</a></td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="/Content/assets/js/required/jquery-1.11.1.min.js"></script>
+    <script>
+        $(".pktSil").click(function (){
+            var sonuc = confirm("Kayıt silinsin mi?")
+            if (sonuc) {
+                var pktId = $(this).data("pktid");
+                $.ajax({
+                    type: "POST",
+                    url: "/Paket/Sil/" + pktId,
+                    success: function () {
+                        alert("Kayıt Silindi");
+                        window.location.replace("/Paket/Index");
+                    },
+                    error: function () {
+                        alert("Kayıt Silme Anında Hata Oluştu.")
+
+                    }
+                    
+                });
+            }
+            else
+            {
+
+            }
+        });
+    </script>
+} 
